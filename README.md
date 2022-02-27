@@ -17,3 +17,14 @@ A SAIDA é essa:</br>
 [aluno=Aluno [nome=Andreia], aluno=Aluno [nome=Felipe], aluno=Aluno [nome=Juarez], aluno=Aluno [nome=Marcelo Algusto], aluno=Aluno [nome=Ricardo], aluno=Aluno [nome=Yago]]</br>
 
 Como é possivel observar os nomes da ultima apresentação esta por ordem alfabetica</br>
+
+
+Na classe Aluno tive que impelenetar como já havia dito a interface Comparable passando Aluno e sobresescrever o metodo compareTo</br>
+
+public class Aluno implements Comparable<Aluno></br>
+
+	@Override
+	public int compareTo(Aluno outroAluno) {
+		// TODO Auto-generated method stub
+		return this.nome.compareTo(outroAluno.nome);
+	}
