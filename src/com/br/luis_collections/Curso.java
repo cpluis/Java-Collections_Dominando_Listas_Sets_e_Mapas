@@ -2,11 +2,14 @@ package com.br.luis_collections;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -16,6 +19,7 @@ public class Curso {
 	private String instrutor;
 	private List<Aula> aulas = new LinkedList<Aula>();
 	private Set<Aluno> alunos= new HashSet<Aluno>();
+	private Map<Integer, Aluno> matriculaParaAlunoMap = new HashMap<Integer, Aluno>();
 
 	public Curso(String nome, String instrutor) {
 		super();
@@ -56,15 +60,21 @@ public class Curso {
 
 	public void matricula(Aluno aluno) {
 		this.alunos.add(aluno);		
+		this.matriculaParaAlunoMap.put(aluno.getMatricula(), aluno);
 	}
 
 	public Set<Aluno> getAlunos() {
-		return Collections.unmodifiableSet(alunos);
-		
+		return Collections.unmodifiableSet(alunos);		
 	}
 
 	public boolean estaMatriculado(Aluno aluno) {		
 		return this.alunos.contains(alunos);
+	}
+
+	public Aluno buscaMatriculado(int numero) {
+		if(!matriculaParaAlunoMap.containsKey(numero))
+			throw new NoSuchElementException("Matricula não encontrada!!");
+		return matriculaParaAlunoMap.get(numero);
 	}
 
 }
